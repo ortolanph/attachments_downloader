@@ -3,7 +3,7 @@ import sqlite3
 
 class DatabaseConnectionManager:
     _connection = None
-    _datasource = "./../attachments.sqlite3"
+    _datasource = "attachments.sqlite3"
 
     def __init__(self):
         self._connect()

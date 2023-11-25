@@ -49,3 +49,21 @@ class GmailService:
         :return: the created service
         """
         return self._service
+
+    def get_all_message_ids(self, next_page_token=None):
+        """
+        Return all the message ids
+        :return: return all the message ids
+        """
+        print("Fetching messages")
+        messages = (self._service.users()
+                    .messages()
+                    .list(userId="me", q="has:attachment", pageToken=next_page_token)
+                    .execute())
+
+        ids = list(map(lambda m: m["id"], messages["messages"]))
+
+        if "nextPageToken" in messages:
+            ids.extend(self.get_all_message_ids(messages["nextPageToken"]))
+
+        return ids

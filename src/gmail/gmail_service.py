@@ -55,7 +55,6 @@ class GmailService:
         Return all the message ids
         :return: return all the message ids
         """
-        print("Fetching messages")
         messages = (self._service.users()
                     .messages()
                     .list(userId="me", q="has:attachment", pageToken=next_page_token)

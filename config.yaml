@@ -1,0 +1,4 @@
+batch:
+  size: 10
+target:
+  folder: "/path/to/my/documents"

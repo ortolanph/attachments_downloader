@@ -5,7 +5,8 @@ create table message
     message_subject   text,
     message_date      text,
     message_language  text,
-    message_processed int default 0
+    message_processed int default 0,
+    message_download  int default 0
 );
 
 create table label

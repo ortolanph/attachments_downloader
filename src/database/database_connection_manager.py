@@ -2,14 +2,14 @@ import sqlite3
 
 
 class DatabaseConnectionManager:
+    _DATASOURCE = "attachments.sqlite3"
     _connection = None
-    _datasource = "attachments.sqlite3"
 
     def __init__(self):
         self._connect()
 
     def _connect(self):
-        self._connection = sqlite3.connect(self._datasource, timeout=10)
+        self._connection = sqlite3.connect(self._DATASOURCE, timeout=10)
 
     def get_connection(self):
         return self._connection

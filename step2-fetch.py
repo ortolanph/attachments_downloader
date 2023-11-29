@@ -1,8 +1,10 @@
+from src.controller.label_controller import LabelController
 from src.controller.message_controller import MessageController
 
 if __name__ == '__main__':
-    print("Step 2 - Fetching message data")
+    print("Step 2 - Fetching messages data")
     message_controller = MessageController()
+    label_controller = LabelController()
 
     messages = message_controller.load_next_messages()
 
@@ -18,3 +20,6 @@ if __name__ == '__main__':
 
         print("Updating message data")
         message_controller.update_message_data(message_id, payload_headers)
+
+        print("Updating or adding label informatiob")
+        label_controller.insert_labels(message_id, label_ids)

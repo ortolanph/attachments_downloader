@@ -7,8 +7,11 @@ class Configuration:
 
     def __init__(self):
         with open(self._CONFIG_FILE) as configuration:
-            _config = yaml.safe_load(configuration)
+            self._config = yaml.safe_load(configuration)
             configuration.close()
+
+    def get_gmail_config(self):
+        return self._config["gmail"]
 
     def get_batch_config(self):
         return self._config["batch"]

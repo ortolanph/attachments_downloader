@@ -312,20 +312,20 @@
               },
               {
                 'name': 'Content-Disposition',
-                'value': 'inline; filename="image001.jpg"; size=16695; creation-date="Wed, 15 Nov 2023 17:02:39 GMT"; modification-date="Thu, 16 Nov 2023 11:31:36 GMT"'
+                "value": 'inline; filename="image001.jpg"; size=16695; creation-date="Wed, 15 Nov 2023 17:02:39 GMT"; modification-date="Thu, 16 Nov 2023 11:31:36 GMT"'
               },
               {
-                'name': 'Content-ID',
-                'value': '<image001.jpg@01DA17DC.E2BC82E0>'
+                "name": "Content-ID",
+                "value": "<image001.jpg@01DA17DC.E2BC82E0>"
               },
               {
-                'name': 'Content-Transfer-Encoding',
-                'value': 'base64'
+                "name": "Content-Transfer-Encoding",
+                "value": "base64"
               }
             ],
-            'body': {
-              'attachmentId': 'ANGjdJ9E27RVNN6RAGIlr5p1lxAdq0HECQQK0mVfveW5vpiOFRHeh_oxV5YjYyIJ9MxZh9-1W-IhVmnvr4GjqFuaE6O2WGH6mmqVa8T8QrB12VOF3mXztJzxI8bxlQlIp-jVvsaHuyFH_5Ks1K7chm1lG0Z6FAUkqlVO7Bf6v7HBps3YpAgOvzOnUFwgQiv90w2Q61hms7iLykn4dXaS52tjopOzXRxP3VUfdOELu89nBudSxKGiUW2aofaw6Nl0sCYy6i_gYgSfe2VGbHh1B627SzdTTu6cjPxOaPGM0hYTrWpXreMCk-iHeXxGA6piMoivLkE90WDlWWA0dXLZOQqoRwb2ZsYIzw-6m6tc8ov9kZp48kjU3hzArMCXzmz8D1oXzbdbzcmLoqZpi8uG',
-              'size': 16695
+            "body": {
+              "attachmentId": "ANGjdJ9E27RVNN6RAGIlr5p1lxAdq0HECQQK0mVfveW5vpiOFRHeh_oxV5YjYyIJ9MxZh9-1W-IhVmnvr4GjqFuaE6O2WGH6mmqVa8T8QrB12VOF3mXztJzxI8bxlQlIp-jVvsaHuyFH_5Ks1K7chm1lG0Z6FAUkqlVO7Bf6v7HBps3YpAgOvzOnUFwgQiv90w2Q61hms7iLykn4dXaS52tjopOzXRxP3VUfdOELu89nBudSxKGiUW2aofaw6Nl0sCYy6i_gYgSfe2VGbHh1B627SzdTTu6cjPxOaPGM0hYTrWpXreMCk-iHeXxGA6piMoivLkE90WDlWWA0dXLZOQqoRwb2ZsYIzw-6m6tc8ov9kZp48kjU3hzArMCXzmz8D1oXzbdbzcmLoqZpi8uG",
+              "size": 16695
             }
           }
         ]

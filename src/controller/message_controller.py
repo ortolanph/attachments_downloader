@@ -1,5 +1,6 @@
 from src.database.message_dao import MessageDAO
 from src.gmail.gmail_service import GmailService
+from src.utils.utils import transform_headers
 
 
 class MessageController:
@@ -10,7 +11,7 @@ class MessageController:
         self._gmail_service = GmailService()
         self._message_dao = MessageDAO()
 
-    def get_all_message_ids(self):
+    def reload_message_ids(self):
         print("Getting all database Ids")
         current_ids = self._message_dao.list_all_ids()
         print("Getting all gmail message Ids")
@@ -23,3 +24,26 @@ class MessageController:
         for message_id in missing_ids:
             self._message_dao.new_message(message_id)
             print(f"Message id {message_id} inserted")
+
+    def load_next_messages(self):
+        print("Selecting next messages")
+        return self._message_dao.select_next_messages()
+
+    def fetch_message(self, message_id):
+        print("Fetching messages to process")
+        return self._gmail_service.get_message_data(message_id)
+
+    def update_message_data(self, message_id, payload_headers):
+        print("Updating message data")
+        header_data = transform_headers(payload_headers)
+
+        print("Fectching headers information")
+        message_from = header_data["From"]
+        message_subject = header_data["Subject"]
+        message_date = header_data["Date"]
+
+        self._message_dao.update_message_data(
+            message_id,
+            message_from,
+            message_subject,
+            message_date)

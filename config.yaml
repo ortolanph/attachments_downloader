@@ -1,3 +1,10 @@
+gmail:
+  credentials: "./secrets/credentials.json"
+  token: "./secrets/token.json"
+  serviceName: "gmail"
+  version: "v1"
+  userId: "me"
+  query: "has:attachment larger:1M"
 batch:
   size: 10
 target:

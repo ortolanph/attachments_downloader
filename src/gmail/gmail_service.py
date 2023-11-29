@@ -7,6 +7,9 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+from src.config.configuration import Configuration
 
 
 class GmailService:
@@ -15,6 +18,7 @@ class GmailService:
     """
     _SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
     _service = None
+    _configuration = None
 
     _secrets_dir = "./secrets/"
 
@@ -22,8 +26,10 @@ class GmailService:
         """
         Creates a service for gmail.
         """
-        token_path = f"{self._secrets_dir}token.json"
-        credentials_path = f"{self._secrets_dir}credentials.json"
+        self._configuration = Configuration().get_gmail_config()
+
+        token_path = self._configuration["token"]
+        credentials_path = self._configuration["credentials"]
 
         creds = None
         if os.path.exists(token_path):
@@ -41,7 +47,7 @@ class GmailService:
             with open(token_path, "w") as token:
                 token.write(creds.to_json())
 
-        self._service = build("gmail", "v1", credentials=creds)
+        self._service = build(self._configuration["serviceName"], self._configuration["version"], credentials=creds)
 
     def service(self):
         """
@@ -57,7 +63,10 @@ class GmailService:
         """
         messages = (self._service.users()
                     .messages()
-                    .list(userId="me", q="has:attachment", pageToken=next_page_token)
+                    .list(
+                        userId=self._configuration["userId"],
+                        q=self._configuration["query"],
+                        pageToken=next_page_token)
                     .execute())
 
         ids = list(map(lambda m: m["id"], messages["messages"]))
@@ -66,3 +75,13 @@ class GmailService:
             ids.extend(self.get_all_message_ids(messages["nextPageToken"]))
 
         return ids
+
+    def get_message_data(self, message_id):
+        print(f"Retrieving a data for message {message_id}")
+        try:
+            return self._service.users().messages().get(userId="me", id=message_id).execute()
+        except HttpError as error:
+            print(f"Error retrieving message {message_id}: {error}")
+
+    def get_label_info(self, label_id):
+        pass

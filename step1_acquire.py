@@ -1,6 +1,6 @@
 from src.controller.message_controller import MessageController
 
 if __name__ == '__main__':
-    controller = MessageController()
+    message_controller = MessageController()
 
-    controller.get_all_message_ids()
+    message_controller.reload_message_ids()

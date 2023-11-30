@@ -49,4 +49,6 @@ class MessageController:
             message_date)
 
     def mark_message_as_processed(self, message_id):
-        pass
+        print("Marking message as processed")
+
+        self._message_dao.mark_as_processed(message_id)

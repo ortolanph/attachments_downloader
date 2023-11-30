@@ -16,7 +16,12 @@ if __name__ == '__main__':
         print("Getting message headers")
         payload_headers = gmail_message["payload"]["headers"]
         print("Getting label ids")
-        label_ids = gmail_message["labelIds"]
+
+        if "labelIds" in gmail_message:
+            label_ids = gmail_message["labelIds"]
+        else:
+            label_ids = []
+
         print("Getting payload pars")
         attachments = gmail_message["payload"]["parts"]
 
@@ -29,4 +34,5 @@ if __name__ == '__main__':
         print("Adding attachment information")
         attachment_controller.insert_attachments(message_id, attachments)
 
+        print("Marking message as processed")
         message_controller.mark_message_as_processed(message_id)

@@ -17,7 +17,7 @@ class AttachmentController:
         print("Insert attachment")
         for attachment in attachments_with_file_name:
             attachment_id = attachment["body"]["attachmentId"]
-            exist_attachment = self._attachment_dao.check_attachment(attachment_id)
+            exist_attachment = self._attachment_dao.check_attachment_for_message_id(message_id)
 
             if not exist_attachment:
                 attachment_data = self._gmail_service.get_attachment_data(message_id, attachment_id)["data"]

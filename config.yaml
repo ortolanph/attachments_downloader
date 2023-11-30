@@ -6,6 +6,6 @@ gmail:
   userId: "me"
   query: "has:attachment larger:1M"
 batch:
-  size: 10
+  size: 50
 target:
   folder: "/path/to/my/documents"

@@ -9,3 +9,5 @@ MESSAGE_UPDATE = ("update message "
                   "message_subject=?, "
                   "message_date=? "
                   "where message_id = ?;")
+
+MESSAGE_MARK_AS_PROCESSED = "update message set message_processed = 1 where message_id = ?"

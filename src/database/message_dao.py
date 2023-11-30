@@ -5,7 +5,7 @@ from src.config.configuration import Configuration
 from src.constants.sql_messages import (
     MESSAGE_INSERT,
     MESSAGE_LIST_ALL_IDS,
-    MESSAGE_SELECT_BATCH, MESSAGE_UPDATE)
+    MESSAGE_SELECT_BATCH, MESSAGE_UPDATE, MESSAGE_MARK_AS_PROCESSED)
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -44,5 +44,13 @@ class MessageDAO:
                                         message_subject,
                                         message_date,
                                         message_id))
+
+        self._connection.commit()
+
+    def mark_as_processed(self, message_id):
+        print("Marking message as processed")
+        cursor = self._connection
+
+        cursor.execute(MESSAGE_MARK_AS_PROCESSED, (message_id,))
 
         self._connection.commit()

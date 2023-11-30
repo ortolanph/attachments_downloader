@@ -13,13 +13,24 @@ class LabelController:
     def insert_labels(self, message_id, labels):
         print(f"Adding labels to message {message_id}")
 
-        for label in labels:
-            # 1. Verify if label is already on label table
-            #    If not
-            #    1.1. If label starts with "Label_",
-            #       1.1.1. Call label gmail service to get label name
-            #       If not, label name = label id
-            # 2. Check message association
-            #     2.1. If not associate, associate
-            #     2.2. I associated, skip
-            pass
+        for label_id in labels:
+            print(f"Checking if label exists")
+            exist_label = self._label_dao.check_label(label_id)
+
+            if not exist_label:
+                print(f"Creating new Label")
+                if not label_id.startswith("Label_"):
+                    label_name = label_id
+                else:
+                    label_info = self._gmail_service.get_label_info(label_id)
+                    print(label_info)
+                    label_name = label_info["name"]
+
+                self._label_dao.new_label(label_id, label_name)
+
+            print(f"Checking label association with message ({message_id} - {label_id})")
+            exist_association = self._label_dao.check_association(label_id, message_id)
+
+            if not exist_association:
+                print(f"Creating new label association with message ({message_id} - {label_id})")
+                self._label_dao.associate_with_message(label_id, message_id)

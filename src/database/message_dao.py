@@ -14,7 +14,7 @@ class MessageDAO:
     _connection_manager = None
     _configuration = None
 
-    def __init__(self) -> object:
+    def __init__(self):
         self._connection_manager = DatabaseConnectionManager()
         self._connection = self._connection_manager.get_connection()
         self._configuration = Configuration()

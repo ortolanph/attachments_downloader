@@ -10,13 +10,15 @@
 ### Step 2 - Fetch Data
 
  - [x] Select batch.size messages
- - [ ] Get information of
+ - [x] Get information of
    - [x] message
-   - [ ] labels
-   - [ ] attachment information
+   - [x] labels
+   - [x] attachment information
+ - [ ] Mark message as processed
 
 ### Step 3 - Download
 
  - [ ] Create the target.folder
  - [ ] Create a pdf report with all related message data
  - [ ] Download attachment
+ - [ ] Mark message as downloaded

@@ -47,3 +47,6 @@ class MessageController:
             message_from,
             message_subject,
             message_date)
+
+    def mark_message_as_processed(self, message_id):
+        pass

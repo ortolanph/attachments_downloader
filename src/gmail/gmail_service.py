@@ -64,9 +64,9 @@ class GmailService:
         messages = (self._service.users()
                     .messages()
                     .list(
-                        userId=self._configuration["userId"],
-                        q=self._configuration["query"],
-                        pageToken=next_page_token)
+            userId=self._configuration["userId"],
+            q=self._configuration["query"],
+            pageToken=next_page_token)
                     .execute())
 
         ids = list(map(lambda m: m["id"], messages["messages"]))
@@ -77,11 +77,23 @@ class GmailService:
         return ids
 
     def get_message_data(self, message_id):
-        print(f"Retrieving a data for message {message_id}")
+        print(f"Retrieving data for message {message_id}")
         try:
             return self._service.users().messages().get(userId="me", id=message_id).execute()
         except HttpError as error:
             print(f"Error retrieving message {message_id}: {error}")
 
     def get_label_info(self, label_id):
-        pass
+        print(f"Retrieving data for label {label_id}")
+        try:
+            return self._service.users().labels().get(userId="me", id=label_id).execute()
+        except HttpError as error:
+            print(f"Error retrieving label {label_id}: {error}")
+
+    def get_attachment_data(self, messge_id, attachment_id):
+        print(f"Retrieving attachment data for {messge_id}")
+        try:
+            return self._service.users().messages().attachments().get(userId="me", messageId=messge_id,
+                                                                      id=attachment_id).execute()
+        except HttpError as error:
+            print(f"Error retrieving attachment {attachment_id}: {error}")

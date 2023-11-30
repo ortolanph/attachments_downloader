@@ -1,4 +1,5 @@
 from src.config.configuration import Configuration
+from src.constants.sql_labels import LABEL_EXIST, LABEL_INSERT, LABEL_ASSOCIATION_EXIST, LABEL_ASSOCIATION_INSERT
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -13,10 +14,23 @@ class LabelDAO:
         self._configuration = Configuration()
 
     def check_label(self, label_id):
-        pass
+        cursor = self._connection.execute(LABEL_EXIST, (label_id,))
+        return [False, True][cursor.fetchone()[0]]
 
-    def insert_label(self, label_id, label_name):
-        pass
+    def new_label(self, label_id, label_name):
+        cursor = self._connection
 
-    def associate_with_message(self, label_id, label_message):
-        pass
+        cursor.execute(LABEL_INSERT, (label_id, label_name))
+
+        self._connection.commit()
+
+    def check_association(self, label_id, message_id):
+        cursor = self._connection.execute(LABEL_ASSOCIATION_EXIST, (label_id, message_id))
+        return [False, True][cursor.fetchone()[0]]
+
+    def associate_with_message(self, label_id, message_id):
+        cursor = self._connection
+
+        cursor.execute(LABEL_ASSOCIATION_INSERT, (message_id, label_id))
+
+        self._connection.commit()

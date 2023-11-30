@@ -14,7 +14,7 @@
    - [x] message
    - [x] labels
    - [x] attachment information
- - [ ] Mark message as processed
+ - [x] Mark message as processed
 
 ### Step 3 - Download
 

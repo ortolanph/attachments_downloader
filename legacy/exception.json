@@ -1,0 +1,23 @@
+{
+  'partId': '25',
+  'mimeType': 'image/xxx',
+  'filename': 'ATT00025',
+  'headers': [
+    {
+      'name': 'Content-Type',
+      'value': 'image/xxx; name=ATT00025'
+    },
+    {
+      'name': 'Content-Transfer-Encoding',
+      'value': 'Base64'
+    },
+    {
+      'name': 'Content-Disposition',
+      'value': 'attachment; filename=ATT00025'
+    }
+  ],
+  'body': {
+    'size': 43,
+    'data': 'R0lGODlhAQABAIAAAP___wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
+  }
+}

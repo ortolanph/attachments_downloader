@@ -52,3 +52,8 @@ class MessageController:
         print("Marking message as processed")
 
         self._message_dao.mark_as_processed(message_id)
+
+    def load_next_messages_to_download(self):
+        print("Getting the next messages to download")
+
+        return self._message_dao.select_next_processed_messages()

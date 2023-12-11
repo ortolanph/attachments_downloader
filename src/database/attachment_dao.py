@@ -1,5 +1,5 @@
 from src.config.configuration import Configuration
-from src.constants.sql_attachments import ATTACHMENT_EXIST, ATTACHMENT_INSERT
+from src.constants.sql_attachments import ATTACHMENT_EXIST, ATTACHMENT_INSERT, ATTACHMENT_BY_MESSAGE_ID
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -24,3 +24,12 @@ class AttachmentDAO:
         cursor.execute(ATTACHMENT_INSERT, (attachment_id, message_id, filename, mime_type, attachment_data, size))
 
         self._connection.commit()
+
+    def get_message_attachment(self, message_id):
+        cursor = self._connection.execute(ATTACHMENT_BY_MESSAGE_ID, (message_id,))
+        return list(map(lambda c: {
+            "attachment_id": c[0],
+            "attachment_name": c[1],
+            "attachment_type": c[2],
+            "attachment_data": c[3],
+            "attachment_size": c[4] / 1024}, cursor))

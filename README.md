@@ -18,7 +18,15 @@
 
 ### Step 3 - Download
 
- - [ ] Create the target.folder
- - [ ] Create a pdf report with all related message data
- - [ ] Download attachment
- - [ ] Mark message as downloaded
+ - [x] Create the target.folder
+ - [x] Get batch.size messages where:
+   - [x] processed
+   - [x] not downloaded
+ - [ ] For each message
+   - [x] Create target.folder.messageId directory
+   - [x] Fetch label data
+   - [x] Fetch download data
+   - [x] Generate index.html from template
+   - [ ] Generate files from download data
+   - [ ] Update database with downloaded flag
+ - [ ] Create or update index with processed and downloaded messages of target.folder destination

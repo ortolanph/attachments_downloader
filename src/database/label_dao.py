@@ -1,5 +1,6 @@
 from src.config.configuration import Configuration
-from src.constants.sql_labels import LABEL_EXIST, LABEL_INSERT, LABEL_ASSOCIATION_EXIST, LABEL_ASSOCIATION_INSERT
+from src.constants.sql_labels import LABEL_EXIST, LABEL_INSERT, LABEL_ASSOCIATION_EXIST, LABEL_ASSOCIATION_INSERT, \
+    LABEL_BY_MESSAGE_ID
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -34,3 +35,7 @@ class LabelDAO:
         cursor.execute(LABEL_ASSOCIATION_INSERT, (message_id, label_id))
 
         self._connection.commit()
+
+    def get_message_labels(self, message_id):
+        cursor = self._connection.execute(LABEL_BY_MESSAGE_ID, (message_id,))
+        return list(map(lambda c: c[0], cursor))

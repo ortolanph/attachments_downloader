@@ -39,6 +39,12 @@
             text-align: right;
             width: 10%
         }
+
+        input {
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -57,14 +63,16 @@
             <td>{{ message_from }}</td>
         </tr>
         <tr>
-            <td><strong>From</strong></td>
-            <td>{{ message_from }}</td>
+            <td><strong>Date</strong></td>
+            <td>{{ message_date }}</td>
         </tr>
         <tr>
             <td><strong>Labels</strong></td>
             <td>
                 <ul>
-                    {% for label in labels %}<li>{{ label }}</li>{% endfor %}
+                    {% for label in labels %}
+                    <li>{{ label }}</li>
+                    {% endfor %}
                 </ul>
             </td>
         </tr>
@@ -81,13 +89,15 @@
             <th>Mime Type</th>
             <th>Attachmnent Size (MB)</th>
         </tr>
-        {% for attachment in attachments %}<tr>
+        {% for attachment in attachments %}
+        <tr>
             <td><code><a href="{{ attachment.attachment_name }}">{{ attachment.attachment_name }}</a></code></td>
             <td><code>{{ attachment.attachment_type }}</code></td>
-            <td class="numeric-data"><code>{{ attachment.attachment_size_mb }}</code></td>
-        </tr>{% endfor %}
+            <td class="numeric-data"><code>{{ attachment.attachment_size }}</code></td>
+        </tr>
+        {% endfor %}
         <tr>
-            <td colspan="3" class="numeric-data"><strong><code>{{ total_sattachment_size_mb }}</code></strong></td>
+            <td colspan="3" class="numeric-data"><strong><code>{{ total_size }}</code></strong></td>
         </tr>
     </table>
     <hr/>

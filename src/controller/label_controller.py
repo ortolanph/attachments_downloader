@@ -34,3 +34,7 @@ class LabelController:
             if not exist_association:
                 print(f"Creating new label association with message ({message_id} - {label_id})")
                 self._label_dao.associate_with_message(label_id, message_id)
+
+    def get_message_labels(self, message_id):
+        print(f"Fetching labels for message {message_id}")
+        return self._label_dao.get_message_labels(message_id)

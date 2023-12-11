@@ -29,3 +29,7 @@ class AttachmentController:
                         attachment["mimeType"],
                         attachment_data,
                         attachment["body"]["size"])
+
+    def get_message_attachments(self, message_id):
+        print(f"Fetching attachments for message {message_id}")
+        return self._attachment_dao.get_message_attachment(message_id)

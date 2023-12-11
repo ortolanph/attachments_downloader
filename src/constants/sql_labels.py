@@ -7,3 +7,7 @@ LABEL_ASSOCIATION_EXIST = ("select count(*) as exist_association "
                            "where label_id = ? and message_id = ?;")
 
 LABEL_ASSOCIATION_INSERT = "insert into message_label (message_id, label_id) values (?, ?)"
+
+LABEL_BY_MESSAGE_ID = ("select l.label_name "
+                       "from label l inner join message_label ml on l.label_id = ml.label_id "
+                       "where ml.message_id=?;")

@@ -8,4 +8,4 @@ gmail:
 batch:
   size: 50
 target:
-  folder: "/path/to/my/documents"
+  folder: "c:\\ortolanph\\attachments"

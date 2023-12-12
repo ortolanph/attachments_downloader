@@ -30,4 +30,4 @@
    - [x] Generate files from download data
    - [x] Update attachment table to downloaded
    - [x] Update database with downloaded flag
- - [ ] Create or update index with processed and downloaded messages of target.folder destination
+ - [x] Create or update index with processed and downloaded messages of target.folder destination

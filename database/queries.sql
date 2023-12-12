@@ -37,3 +37,5 @@ where ml.message_id=?;
 select attachment_name, attachment_type, attachment_size
   from attachment
  where message_id=?;
+
+delete from message;

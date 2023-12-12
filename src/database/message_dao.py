@@ -5,7 +5,8 @@ from src.config.configuration import Configuration
 from src.constants.sql_messages import (
     MESSAGE_INSERT,
     MESSAGE_LIST_ALL_IDS,
-    MESSAGE_SELECT_BATCH, MESSAGE_UPDATE, MESSAGE_MARK_AS_PROCESSED, MESSAGE_SELECT_BATCH_PROCESSED)
+    MESSAGE_SELECT_BATCH, MESSAGE_UPDATE, MESSAGE_MARK_AS_PROCESSED, MESSAGE_SELECT_BATCH_PROCESSED,
+    MESSAGE_MARK_AS_DOWNLOADED, MESSAGE_SELECT_BATCH_DOWNLOADED)
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -46,6 +47,15 @@ class MessageDAO:
             "message_subject": c[2],
             "message_date": c[3]}, cursor))
 
+    def select_downloaded_messages(self):
+        print(f"Fetching all downloaded messages")
+        cursor = self._connection.execute(MESSAGE_SELECT_BATCH_DOWNLOADED)
+        return list(map(lambda c: {
+            "message_id": c[0],
+            "message_from": c[1],
+            "message_subject": c[2],
+            "message_date": c[3]}, cursor))
+
     def update_message_data(self, message_id, message_from, message_subject, message_date):
         print("Updating message data")
         cursor = self._connection
@@ -62,5 +72,13 @@ class MessageDAO:
         cursor = self._connection
 
         cursor.execute(MESSAGE_MARK_AS_PROCESSED, (message_id,))
+
+        self._connection.commit()
+
+    def mark_as_downloaded(self, message_id):
+        print("Marking message as downloaded")
+        cursor = self._connection
+
+        cursor.execute(MESSAGE_MARK_AS_DOWNLOADED, (message_id,))
 
         self._connection.commit()

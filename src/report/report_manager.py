@@ -29,8 +29,23 @@ class ReportManager:
             total_size=total_size)
 
         print(f"Saving file {target_folder}{path.sep}index.html")
-        with open(f"{target_folder}{path.sep}index.html", 'w') as index_writer:
+        with open(f"{target_folder}{path.sep}index.html", 'w', encoding="utf-8") as index_writer:
             index_writer.writelines(rendered_page)
 
         message_index.close()
+        index_writer.close()
+
+    def generate_general_index(self, messages, target_folder):
+        print(f"Generating general report")
+
+        with open(self.__general_index) as general_index:
+            general_index_template = Template(general_index.read())
+
+        rendered_page = general_index_template.render(messages=messages)
+
+        print(f"Saving file {target_folder}{path.sep}index.html")
+        with open(f"{target_folder}{path.sep}index.html", 'w', encoding="utf-8") as index_writer:
+            index_writer.writelines(rendered_page)
+
+        general_index.close()
         index_writer.close()

@@ -27,6 +27,7 @@
    - [x] Fetch label data
    - [x] Fetch download data
    - [x] Generate index.html from template
-   - [ ] Generate files from download data
-   - [ ] Update database with downloaded flag
+   - [x] Generate files from download data
+   - [x] Update attachment table to downloaded
+   - [x] Update database with downloaded flag
  - [ ] Create or update index with processed and downloaded messages of target.folder destination

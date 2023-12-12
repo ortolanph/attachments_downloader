@@ -1,3 +1,6 @@
+import base64
+from os import path
+
 from src.database.attachment_dao import AttachmentDAO
 from src.gmail.gmail_service import GmailService
 
@@ -33,3 +36,14 @@ class AttachmentController:
     def get_message_attachments(self, message_id):
         print(f"Fetching attachments for message {message_id}")
         return self._attachment_dao.get_message_attachment(message_id)
+
+    def download(self, attachment, message_target_folder):
+        print(f"Saving attachment {attachment['attachment_name']} to {message_target_folder}")
+
+        file_data = base64.urlsafe_b64decode(attachment['attachment_data'].encode('UTF-8'))
+        file_path = f"{message_target_folder}{path.sep}{attachment['attachment_name']}"
+
+        with open(file_path, 'wb') as attachment_file:
+            attachment_file.write(file_data)
+
+        self._attachment_dao.update_attachment_status(attachment['attachment_id'])

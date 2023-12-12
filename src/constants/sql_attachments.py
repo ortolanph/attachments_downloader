@@ -12,3 +12,5 @@ ATTACHMENT_INSERT = ("insert into attachment "
 ATTACHMENT_BY_MESSAGE_ID = ("select attachment_id, attachment_name, attachment_type, attachment_data, attachment_size "
                             "from attachment "
                             "where message_id=?;")
+
+ATTACHMENT_UPDATE = "update attachment set downloaded = 1 where attachment_id = ?"

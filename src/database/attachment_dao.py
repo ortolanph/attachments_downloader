@@ -1,5 +1,6 @@
 from src.config.configuration import Configuration
-from src.constants.sql_attachments import ATTACHMENT_EXIST, ATTACHMENT_INSERT, ATTACHMENT_BY_MESSAGE_ID
+from src.constants.sql_attachments import ATTACHMENT_EXIST, ATTACHMENT_INSERT, ATTACHMENT_BY_MESSAGE_ID, \
+    ATTACHMENT_UPDATE
 from src.database.database_connection_manager import DatabaseConnectionManager
 
 
@@ -33,3 +34,10 @@ class AttachmentDAO:
             "attachment_type": c[2],
             "attachment_data": c[3],
             "attachment_size": c[4] / 1024}, cursor))
+
+    def update_attachment_status(self, attachment_id):
+        cursor = self._connection
+
+        cursor.execute(ATTACHMENT_UPDATE, (attachment_id, ))
+
+        self._connection.commit()

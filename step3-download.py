@@ -38,7 +38,7 @@ if __name__ == '__main__':
         for attachment in attachments:
             attachment_controller.download(attachment, message_target_folder)
 
-# 3. For each message
-#   3.5. Generate files from download data
-#   3.6. Update database with downloaded flag
-# 4. Create or update index with processed and downloaded messages of target.folder destination
+        message_controller.mark_message_as_downloaded(message['message_id'])
+
+    downloaded_messages = message_controller.get_all_downloaded_messages()
+    report_manager.generate_general_index(messages=downloaded_messages, target_folder=targetFolder)

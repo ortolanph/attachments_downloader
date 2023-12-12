@@ -4,7 +4,7 @@ gmail:
   serviceName: "gmail"
   version: "v1"
   userId: "me"
-  query: "has:attachment larger:1M"
+  query: "has:attachment"
 batch:
   size: 50
 target:

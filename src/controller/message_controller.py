@@ -57,3 +57,12 @@ class MessageController:
         print("Getting the next messages to download")
 
         return self._message_dao.select_next_processed_messages()
+
+    def mark_message_as_downloaded(self, message_id):
+        print("Marking message as downloaded")
+
+        self._message_dao.mark_as_downloaded(message_id)
+
+    def get_all_downloaded_messages(self):
+        print("Getting all the downloaded messages")
+        return self._message_dao.select_downloaded_messages()
